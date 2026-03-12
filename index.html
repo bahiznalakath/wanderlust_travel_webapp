@@ -1,0 +1,2733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Travels - Explore Your Next Adventure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            color: #333;
+            background: #f8fafc;
+        }
+
+        /* ===== CUSTOM SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #2980b9, #c0392b);
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideInDown 1s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .logo span {
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo::after {
+            content: '✈️';
+            position: absolute;
+            top: -10px;
+            right: -30px;
+            font-size: 1.5rem;
+            animation: fly 3s ease-in-out infinite;
+        }
+
+        @keyframes fly {
+            0%, 100% {
+                transform: translateX(0) translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateX(10px) translateY(-5px) rotate(10deg);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #2c3e50;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: slideShow 24s infinite;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide:nth-child(1) {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/672358/pexels-photo-672358.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            animation-delay: 0s;
+        }
+
+        .slide:nth-child(2) {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            animation-delay: 6s;
+        }
+
+        .slide:nth-child(3) {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            animation-delay: 12s;
+        }
+
+        .slide:nth-child(4) {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            animation-delay: 18s;
+        }
+
+        @keyframes slideShow {
+            0%, 20%, 100% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+            5%, 15% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float-particle 8s infinite;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 2s ease;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(52,152,219,0.5);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(231,76,60,0.5);
+            }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* ===== SEARCH SECTION ===== */
+        .search-section {
+            background: white;
+            padding: 3rem 5%;
+            margin-top: -4rem;
+            position: relative;
+            z-index: 100;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .search-form input,
+        .search-form select {
+            padding: 1rem 1.5rem;
+            border: 2px solid #eef2f7;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .search-form input:focus,
+        .search-form select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 20px rgba(52,152,219,0.2);
+        }
+
+        .search-form button {
+            padding: 1rem;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52,152,219,0.3);
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            border-radius: 2px;
+            animation: titleLine 3s ease-in-out infinite;
+        }
+
+        @keyframes titleLine {
+            0%, 100% {
+                width: 80px;
+            }
+            50% {
+                width: 120px;
+            }
+        }
+
+        .section-title p {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+
+        /* ===== CATEGORIES SECTION ===== */
+        .categories {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf5 100%);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .category-count {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.3rem 1rem;
+            background: linear-gradient(45deg, #3498db20, #e74c3c20);
+            border-radius: 20px;
+            color: #3498db;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ===== DESTINATIONS SECTION ===== */
+        .destinations {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .destination-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.5s;
+            background: white;
+            position: relative;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 30px 45px rgba(0,0,0,0.2);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+
+        .destination-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 2rem;
+            position: relative;
+            background: white;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-content p {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .destination-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            transform: scaleX(0);
+            transition: transform 0.5s;
+        }
+
+        .destination-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .destination-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 6rem 5%;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .services .section-title h2,
+        .services .section-title p {
+            color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        /* ===== PACKAGES SECTION ===== */
+        .packages {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .package-card:hover {
+            transform: rotateY(5deg) rotateX(5deg) translateY(-15px);
+            box-shadow: -20px 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .package-card.featured {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .package-card.featured h3,
+        .package-card.featured .package-price {
+            color: white;
+        }
+
+        .package-card.featured .package-features li {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: 30px;
+            right: -35px;
+            background: linear-gradient(45deg, #f1c40f, #e67e22);
+            color: white;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-size: 0.9rem;
+            font-weight: 600;
+            animation: glow 2s infinite;
+        }
+
+        .package-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .package-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 2rem;
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .package-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eef2f7;
+            font-size: 1.1rem;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .package-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(52,152,219,0.4);
+        }
+
+        /* ===== TRAVEL EXPERTS SECTION ===== */
+        .consultants {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf5 100%);
+        }
+
+        .consultants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .consultant-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .consultant-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+        }
+
+        .consultant-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .consultant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+
+        .consultant-card:hover .consultant-image img {
+            transform: scale(1.1);
+        }
+
+        .consultant-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
+        .consultant-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #f1c40f, #e67e22);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .consultant-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .consultant-info h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .consultant-info p {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .languages {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .language-tag {
+            background: #f0f5f9;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .consultant-contact {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .chat-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .chat-btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            border: 1px solid #eef2f7;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: #3498db;
+            opacity: 0.2;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .author-info h4 {
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* ===== FLOATING CONTACT BUTTONS ===== */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-whatsapp,
+        .floating-chat {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            position: relative;
+            border: 2px solid white;
+        }
+
+        .floating-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128C7E);
+            animation: whatsappPulse 2s infinite;
+        }
+
+        .floating-chat {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            animation: chatPulse 2s infinite;
+        }
+
+        @keyframes whatsappPulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        @keyframes chatPulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(52, 152, 219, 0.8);
+            }
+        }
+
+        .floating-whatsapp:hover,
+        .floating-chat:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: badgePulse 1s infinite;
+            border: 2px solid white;
+        }
+
+        /* ===== WHATSAPP WIDGET ===== */
+        .whatsapp-widget,
+        .chat-widget {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 350px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: none;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease;
+        }
+
+        .whatsapp-widget.active,
+        .chat-widget.active {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .whatsapp-header,
+        .chat-header {
+            background: linear-gradient(135deg, #25d366, #128C7E);
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .whatsapp-header i,
+        .chat-header i {
+            font-size: 1.5rem;
+        }
+
+        .whatsapp-header h3,
+        .chat-header h3 {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+        }
+
+        .whatsapp-body {
+            padding: 1.2rem;
+            background: #f8fafc;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .whatsapp-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #eef2f7;
+        }
+
+        .whatsapp-contact:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
+            border-color: #25d366;
+        }
+
+        .whatsapp-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25d366, #128C7E);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .whatsapp-info h4 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .whatsapp-info p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .whatsapp-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #25d366;
+        }
+
+        .whatsapp-status i {
+            font-size: 0.5rem;
+        }
+
+        /* ===== CHAT WIDGET ===== */
+        .chat-messages {
+            height: 300px;
+            padding: 1.2rem;
+            overflow-y: auto;
+            background: #f8fafc;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message.received {
+            align-items: flex-start;
+        }
+
+        .message.sent {
+            align-items: flex-end;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 18px;
+            position: relative;
+            animation: messagePop 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        @keyframes messagePop {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .message.received .message-content {
+            background: white;
+            border: 1px solid #eef2f7;
+            border-top-left-radius: 5px;
+        }
+
+        .message.sent .message-content {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-top-right-radius: 5px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #eef2f7;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #eef2f7;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .chat-input-area input:focus {
+            border-color: #3498db;
+        }
+
+        .chat-input-area button {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-input-area button:hover {
+            transform: scale(1.1);
+        }
+
+        .typing-indicator {
+            display: none;
+            gap: 5px;
+            padding: 1rem;
+            background: white;
+            border-radius: 18px;
+            width: fit-content;
+            margin-bottom: 10px;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+                background: #3498db;
+            }
+        }
+
+        /* ===== MODERN FOOTER ===== */
+        .modern-footer {
+            position: relative;
+            background: linear-gradient(135deg, #0b1120 0%, #19223c 100%);
+            color: #fff;
+            overflow: hidden;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .footer-waves svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            animation: waveFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes waveFloat {
+            0%, 100% {
+                transform: translateY(0) scaleX(1);
+            }
+            50% {
+                transform: translateY(-10px) scaleX(1.02);
+            }
+        }
+
+        .footer-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .footer-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatFooterParticle 15s infinite linear;
+        }
+
+        @keyframes floatFooterParticle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-description {
+            color: #a0a8c0;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .payment-method {
+            width: 50px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #a0a8c0;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-method:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            color: white;
+            border-color: #3498db;
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            border-radius: 3px;
+            animation: titleLine 2s ease-in-out infinite;
+        }
+
+        .link-list {
+            list-style: none;
+        }
+
+        .link-list li {
+            margin-bottom: 1rem;
+        }
+
+        .link-list a {
+            color: #a0a8c0;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .link-list a i {
+            font-size: 0.8rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+
+        .link-list a:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .link-list a:hover i {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 0.9rem;
+            color: #a0a8c0;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-details p,
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: #3498db;
+        }
+
+        .newsletter-text {
+            color: #a0a8c0;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #3498db;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .newsletter-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateX(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .weather-widget {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(52, 152, 219, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(231, 76, 60, 0.3);
+            }
+        }
+
+        .weather-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f1c40f, #e67e22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .weather-temp {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #f1c40f, #e67e22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .weather-location {
+            font-size: 0.85rem;
+            color: #a0a8c0;
+        }
+
+        .footer-bottom {
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: #a0a8c0;
+            font-size: 0.9rem;
+        }
+
+        .copyright i {
+            color: #e74c3c;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-bottom-links a {
+            color: #a0a8c0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .footer-bottom-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            transition: width 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 2rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                animation: slideDown 0.3s ease;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .package-card.featured {
+                transform: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+            }
+
+            .floating-contact {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-widget,
+            .chat-widget {
+                width: 300px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .consultant-contact {
+                flex-direction: column;
+            }
+
+            .floating-whatsapp,
+            .floating-chat {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Wander<span>lust</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#experts">Travel Experts</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="slider">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+        
+        <div class="particles">
+            <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="top: 60%; left: 20%; animation-delay: 1s;"></div>
+            <div class="particle" style="top: 30%; left: 80%; animation-delay: 2s;"></div>
+            <div class="particle" style="top: 70%; left: 50%; animation-delay: 3s;"></div>
+            <div class="particle" style="top: 40%; left: 90%; animation-delay: 4s;"></div>
+            <div class="particle" style="top: 80%; left: 30%; animation-delay: 5s;"></div>
+            <div class="particle" style="top: 10%; left: 70%; animation-delay: 6s;"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1>Explore the World with Us</h1>
+            <p>Discover amazing destinations and create unforgettable memories</p>
+            <a href="#packages" class="cta-button">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <div class="search-section">
+        <div class="search-form">
+            <input type="text" placeholder="Where to?">
+            <input type="date" placeholder="Check-in">
+            <input type="date" placeholder="Check-out">
+            <select>
+                <option>1 Adult</option>
+                <option>2 Adults</option>
+                <option>3 Adults</option>
+                <option>Family</option>
+            </select>
+            <button type="submit"><i class="fas fa-search"></i> Search</button>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="section-title">
+            <h2>Travel Categories</h2>
+            <p>Find your perfect travel style</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">🏖️</div>
+                <h3>Beach Holidays</h3>
+                <p>Relax on pristine beaches</p>
+                <span class="category-count">24 Destinations</span>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🏔️</div>
+                <h3>Adventure</h3>
+                <p>Thrilling experiences</p>
+                <span class="category-count">18 Destinations</span>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🏛️</div>
+                <h3>Cultural Tours</h3>
+                <p>Explore history & heritage</p>
+                <span class="category-count">32 Destinations</span>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🛍️</div>
+                <h3>Shopping</h3>
+                <p>Best shopping destinations</p>
+                <span class="category-count">15 Destinations</span>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🍽️</div>
+                <h3>Culinary Tours</h3>
+                <p>Food lover's paradise</p>
+                <span class="category-count">21 Destinations</span>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🐘</div>
+                <h3>Wildlife</h3>
+                <p>Encounter exotic animals</p>
+                <span class="category-count">12 Destinations</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="destinations">
+        <div class="section-title">
+            <h2>Popular Destinations</h2>
+            <p>Most loved places by our travelers</p>
+        </div>
+        <div class="destination-grid">
+            <div class="destination-card">
+                <span class="destination-category">Beach</span>
+                <img src="https://images.pexels.com/photos/2403015/pexels-photo-2403015.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Santorini, Greece">
+                <div class="card-content">
+                    <h3>Santorini, Greece</h3>
+                    <p>Experience stunning sunsets and white-washed buildings</p>
+                    <div class="price">$899</div>
+                </div>
+            </div>
+            <div class="destination-card">
+                <span class="destination-category">Cultural</span>
+                <img src="https://images.pexels.com/photos/2363/france-landmark-lights-night.jpg?auto=compress&cs=tinysrgb&w=800" alt="Paris, France">
+                <div class="card-content">
+                    <h3>Paris, France</h3>
+                    <p>The city of love, lights, and endless charm</p>
+                    <div class="price">$799</div>
+                </div>
+            </div>
+            <div class="destination-card">
+                <span class="destination-category">Beach</span>
+                <img src="https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bali, Indonesia">
+                <div class="card-content">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Tropical paradise with rich culture and beaches</p>
+                    <div class="price">$699</div>
+                </div>
+            </div>
+            <div class="destination-card">
+                <span class="destination-category">Cultural</span>
+                <img src="https://images.pexels.com/photos/417344/pexels-photo-417344.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Venice, Italy">
+                <div class="card-content">
+                    <h3>Venice, Italy</h3>
+                    <p>Romantic canals and historic architecture</p>
+                    <div class="price">$849</div>
+                </div>
+            </div>
+            <div class="destination-card">
+                <span class="destination-category">Adventure</span>
+                <img src="https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Swiss Alps">
+                <div class="card-content">
+                    <h3>Swiss Alps</h3>
+                    <p>Majestic mountains and winter sports</p>
+                    <div class="price">$999</div>
+                </div>
+            </div>
+            <div class="destination-card">
+                <span class="destination-category">Wildlife</span>
+                <img src="https://images.pexels.com/photos/2069153/pexels-photo-2069153.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Maasai Mara">
+                <div class="card-content">
+                    <h3>Maasai Mara, Kenya</h3>
+                    <p>Witness the great migration</p>
+                    <div class="price">$1299</div>
+                </div>
+            </div>
+            <div class="destination-card">
+                <span class="destination-category">Shopping</span>
+                <img src="https://images.pexels.com/photos/3573377/pexels-photo-3573377.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dubai">
+                <div class="card-content">
+                    <h3>Dubai, UAE</h3>
+                    <p>Luxury shopping and modern architecture</p>
+                    <div class="price">$1099</div>
+                </div>
+            </div>
+            <div class="destination-card">
+                <span class="destination-category">Culinary</span>
+                <img src="https://images.pexels.com/photos/3733340/pexels-photo-3733340.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tokyo">
+                <div class="card-content">
+                    <h3>Tokyo, Japan</h3>
+                    <p>Exquisite cuisine and unique culture</p>
+                    <div class="price">$1199</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>Everything you need for perfect travel</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✈️</div>
+                <h3>Flight Booking</h3>
+                <p>Best deals on flights worldwide with flexible options</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏨</div>
+                <h3>Hotel Reservations</h3>
+                <p>Luxury and budget-friendly stays at top locations</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚗</div>
+                <h3>Car Rentals</h3>
+                <p>Convenient transportation options for your journey</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🗺️</div>
+                <h3>Tour Guides</h3>
+                <p>Expert local guides for authentic experiences</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏥</div>
+                <h3>Travel Insurance</h3>
+                <p>Comprehensive coverage for peace of mind</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💳</div>
+                <h3>Visa Assistance</h3>
+                <p>Hassle-free visa processing</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="packages">
+        <div class="section-title">
+            <h2>Travel Packages</h2>
+            <p>Choose your perfect travel plan</p>
+        </div>
+        <div class="packages-grid">
+            <div class="package-card">
+                <h3>Basic</h3>
+                <div class="package-price">$299 <span>/person</span></div>
+                <ul class="package-features">
+                    <li>✓ 3 Days, 2 Nights</li>
+                    <li>✓ Hotel Accommodation</li>
+                    <li>✓ Breakfast Included</li>
+                    <li>✓ Airport Transfer</li>
+                    <li>✗ Tour Guide</li>
+                </ul>
+                <a href="#" class="package-button">Book Now</a>
+            </div>
+            <div class="package-card featured">
+                <div class="featured-tag">Popular</div>
+                <h3>Premium</h3>
+                <div class="package-price">$599 <span>/person</span></div>
+                <ul class="package-features">
+                    <li>✓ 5 Days, 4 Nights</li>
+                    <li>✓ Luxury Hotel</li>
+                    <li>✓ All Meals Included</li>
+                    <li>✓ Airport Transfer</li>
+                    <li>✓ Tour Guide</li>
+                </ul>
+                <a href="#" class="package-button">Book Now</a>
+            </div>
+            <div class="package-card">
+                <h3>Deluxe</h3>
+                <div class="package-price">$899 <span>/person</span></div>
+                <ul class="package-features">
+                    <li>✓ 7 Days, 6 Nights</li>
+                    <li>✓ 5-Star Resort</li>
+                    <li>✓ All Meals Included</li>
+                    <li>✓ Luxury Transport</li>
+                    <li>✓ Private Tour Guide</li>
+                </ul>
+                <a href="#" class="package-button">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Experts Section -->
+    <section id="experts" class="consultants">
+        <div class="section-title">
+            <h2>Our Travel Experts</h2>
+            <p>Chat with our experienced travel consultants</p>
+        </div>
+        <div class="consultants-grid">
+            <div class="consultant-card">
+                <div class="consultant-image">
+                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800" alt="John Smith">
+                </div>
+                <div class="consultant-badge">Senior Consultant</div>
+                <div class="consultant-info">
+                    <h3>John Smith</h3>
+                    <p>✈️ Europe Specialist</p>
+                    <div class="languages">
+                        <span class="language-tag">English</span>
+                        <span class="language-tag">French</span>
+                        <span class="language-tag">Spanish</span>
+                    </div>
+                    <div class="consultant-contact">
+                        <button class="contact-btn whatsapp-btn" onclick="openWhatsApp('+1234567890', 'John')">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="contact-btn chat-btn" onclick="openChat('John')">
+                            <i class="fas fa-comment"></i> Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consultant-card">
+                <div class="consultant-image">
+                    <img src="https://images.pexels.com/photos/2380794/pexels-photo-2380794.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sarah Johnson">
+                </div>
+                <div class="consultant-badge">Top Rated</div>
+                <div class="consultant-info">
+                    <h3>Sarah Johnson</h3>
+                    <p>🏝️ Beach & Island Expert</p>
+                    <div class="languages">
+                        <span class="language-tag">English</span>
+                        <span class="language-tag">Italian</span>
+                        <span class="language-tag">Greek</span>
+                    </div>
+                    <div class="consultant-contact">
+                        <button class="contact-btn whatsapp-btn" onclick="openWhatsApp('+1234567891', 'Sarah')">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="contact-btn chat-btn" onclick="openChat('Sarah')">
+                            <i class="fas fa-comment"></i> Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consultant-card">
+                <div class="consultant-image">
+                    <img src="https://images.pexels.com/photos/2380795/pexels-photo-2380795.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mike Chen">
+                </div>
+                <div class="consultant-badge">Adventure Expert</div>
+                <div class="consultant-info">
+                    <h3>Mike Chen</h3>
+                    <p>🏔️ Adventure & Trekking</p>
+                    <div class="languages">
+                        <span class="language-tag">English</span>
+                        <span class="language-tag">Mandarin</span>
+                        <span class="language-tag">Japanese</span>
+                    </div>
+                    <div class="consultant-contact">
+                        <button class="contact-btn whatsapp-btn" onclick="openWhatsApp('+1234567892', 'Mike')">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="contact-btn chat-btn" onclick="openChat('Mike')">
+                            <i class="fas fa-comment"></i> Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>What Our Clients Say</h2>
+            <p>Real experiences from happy travelers</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Sarah helped us plan our perfect honeymoon in Maldives. Every detail was perfect!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JD</div>
+                    <div class="author-info">
+                        <h4>John Doe</h4>
+                        <p>Honeymoon in Maldives</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Mike suggested amazing adventure spots in Nepal. Best trekking experience ever!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JS</div>
+                    <div class="author-info">
+                        <h4>Jane Smith</h4>
+                        <p>Adventure in Nepal</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "John's European tour package was incredible. The attention to detail was impressive!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MW</div>
+                    <div class="author-info">
+                        <h4>Mike Wilson</h4>
+                        <p>European Tour</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer id="contact" class="modern-footer">
+        <div class="footer-waves">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#0b1120" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+            </svg>
+        </div>
+
+        <div class="footer-particles">
+            <div class="footer-particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="footer-particle" style="top: 40%; left: 30%; animation-delay: 2s;"></div>
+            <div class="footer-particle" style="top: 60%; left: 50%; animation-delay: 4s;"></div>
+            <div class="footer-particle" style="top: 80%; left: 70%; animation-delay: 6s;"></div>
+            <div class="footer-particle" style="top: 30%; left: 90%; animation-delay: 8s;"></div>
+        </div>
+
+        <div class="footer-content">
+            <!-- Brand Section -->
+            <div class="footer-brand">
+                <div class="footer-logo">Wanderlust</div>
+                <p class="brand-description">
+                    Your trusted partner for unforgettable journeys around the world. We create experiences that last a lifetime.
+                </p>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+
+                <div class="payment-methods">
+                    <div class="payment-method"><i class="fab fa-cc-visa"></i></div>
+                    <div class="payment-method"><i class="fab fa-cc-mastercard"></i></div>
+                    <div class="payment-method"><i class="fab fa-cc-amex"></i></div>
+                    <div class="payment-method"><i class="fab fa-cc-paypal"></i></div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="link-list">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#categories"><i class="fas fa-chevron-right"></i> Categories</a></li>
+                    <li><a href="#destinations"><i class="fas fa-chevron-right"></i> Destinations</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="#packages"><i class="fas fa-chevron-right"></i> Packages</a></li>
+                    <li><a href="#experts"><i class="fas fa-chevron-right"></i> Travel Experts</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-contact">
+                <h3 class="footer-title">Contact Info</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-details">
+                        <h4>Address</h4>
+                        <p>123 Travel Street, New York, NY 10001</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p><a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p><a href="mailto:info@wanderlust.com">info@wanderlust.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="contact-details">
+                        <h4>WhatsApp</h4>
+                        <p><a href="https://wa.me/15559876543">+1 (555) 987-6543</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-newsletter">
+                <h3 class="footer-title">Newsletter</h3>
+                <p class="newsletter-text">
+                    Subscribe to get exclusive travel deals, tips, and updates directly in your inbox.
+                </p>
+                
+                <div class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address">
+                    <button class="newsletter-btn" type="submit">
+                        <i class="fas fa-paper-plane"></i> Subscribe
+                    </button>
+                </div>
+
+                <div class="weather-widget">
+                    <div class="weather-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div>
+                        <div class="weather-temp">29°C</div>
+                        <div class="weather-location">New York, Sunny</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="copyright">
+                <i class="far fa-copyright"></i> 2024 Wanderlust Travels. All rights reserved. Made with <i class="fas fa-heart"></i> for travelers
+            </div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+        <div class="floating-whatsapp" onclick="toggleWhatsAppWidget()">
+            <i class="fab fa-whatsapp"></i>
+            <span class="notification-badge">3</span>
+        </div>
+        <div class="floating-chat" onclick="toggleChatWidget()">
+            <i class="fas fa-comment"></i>
+            <span class="notification-badge">1</span>
+        </div>
+    </div>
+
+    <!-- WhatsApp Widget -->
+    <div class="whatsapp-widget" id="whatsappWidget">
+        <div class="whatsapp-header">
+            <i class="fab fa-whatsapp"></i>
+            <h3>Chat on WhatsApp</h3>
+            <span class="close-btn" onclick="toggleWhatsAppWidget()">&times;</span>
+        </div>
+        <div class="whatsapp-body">
+            <div class="whatsapp-contact" onclick="openWhatsApp('+1234567890', 'John')">
+                <div class="whatsapp-avatar">J</div>
+                <div class="whatsapp-info">
+                    <h4>John Smith</h4>
+                    <p>Europe Specialist</p>
+                    <div class="whatsapp-status">
+                        <i class="fas fa-circle"></i> Online
+                    </div>
+                </div>
+            </div>
+            <div class="whatsapp-contact" onclick="openWhatsApp('+1234567891', 'Sarah')">
+                <div class="whatsapp-avatar">S</div>
+                <div class="whatsapp-info">
+                    <h4>Sarah Johnson</h4>
+                    <p>Beach Expert</p>
+                    <div class="whatsapp-status">
+                        <i class="fas fa-circle"></i> Online
+                    </div>
+                </div>
+            </div>
+            <div class="whatsapp-contact" onclick="openWhatsApp('+1234567892', 'Mike')">
+                <div class="whatsapp-avatar">M</div>
+                <div class="whatsapp-info">
+                    <h4>Mike Chen</h4>
+                    <p>Adventure Expert</p>
+                    <div class="whatsapp-status">
+                        <i class="fas fa-circle"></i> Last seen 5 min ago
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i class="fas fa-comment"></i>
+            <h3>Chat with Sarah</h3>
+            <span class="close-btn" onclick="toggleChatWidget()">&times;</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message received">
+                <div class="message-content">
+                    Hello! How can I help you plan your trip today?
+                </div>
+                <div class="message-time">10:30 AM</div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Create footer particles
+        function createFooterParticles() {
+            const container = document.querySelector('.footer-particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('footer-particle');
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.width = (Math.random() * 8 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // WhatsApp Functions
+        function toggleWhatsAppWidget() {
+            const widget = document.getElementById('whatsappWidget');
+            widget.classList.toggle('active');
+            
+            const chatWidget = document.getElementById('chatWidget');
+            if (chatWidget.classList.contains('active')) {
+                chatWidget.classList.remove('active');
+            }
+        }
+
+        function toggleChatWidget() {
+            const widget = document.getElementById('chatWidget');
+            widget.classList.toggle('active');
+            
+            const whatsappWidget = document.getElementById('whatsappWidget');
+            if (whatsappWidget.classList.contains('active')) {
+                whatsappWidget.classList.remove('active');
+            }
+        }
+
+        function openWhatsApp(phoneNumber, consultantName) {
+            const message = encodeURIComponent(`Hi ${consultantName}, I'm interested in booking a trip. Can you help me?`);
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        }
+
+        function openChat(consultantName) {
+            const chatWidget = document.getElementById('chatWidget');
+            const chatHeader = chatWidget.querySelector('.chat-header h3');
+            chatHeader.textContent = `Chat with ${consultantName}`;
+            chatWidget.classList.add('active');
+            
+            const whatsappWidget = document.getElementById('whatsappWidget');
+            if (whatsappWidget.classList.contains('active')) {
+                whatsappWidget.classList.remove('active');
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, 'sent');
+                input.value = '';
+                
+                const typingIndicator = document.getElementById('typingIndicator');
+                typingIndicator.classList.add('active');
+                
+                setTimeout(() => {
+                    typingIndicator.classList.remove('active');
+                    const replies = [
+                        "Thanks for your message! Let me check that for you.",
+                        "Great choice! I can help you with that.",
+                        "I'll find the best options for your trip.",
+                        "Let me connect you with the right expert."
+                    ];
+                    const randomReply = replies[Math.floor(Math.random() * replies.length)];
+                    addMessage(randomReply, 'received');
+                }, 2000);
+            }
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function addMessage(text, type) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', type);
+            
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div class="message-content">${text}</div>
+                <div class="message-time">${time}</div>
+            `;
+            
+            const typingIndicator = document.getElementById('typingIndicator');
+            chatMessages.insertBefore(messageDiv, typingIndicator);
+            
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Close widgets when clicking outside
+        document.addEventListener('click', function(event) {
+            const whatsappWidget = document.getElementById('whatsappWidget');
+            const chatWidget = document.getElementById('chatWidget');
+            const whatsappBtn = document.querySelector('.floating-whatsapp');
+            const chatBtn = document.querySelector('.floating-chat');
+            
+            if (!whatsappWidget.contains(event.target) && !whatsappBtn.contains(event.target)) {
+                whatsappWidget.classList.remove('active');
+            }
+            
+            if (!chatWidget.contains(event.target) && !chatBtn.contains(event.target)) {
+                chatWidget.classList.remove('active');
+            }
+        });
+
+        // Newsletter subscription
+        document.querySelector('.newsletter-btn').addEventListener('click', function() {
+            const input = document.querySelector('.newsletter-input');
+            const email = input.value.trim();
+            
+            if (email && email.includes('@') && email.includes('.')) {
+                alert('Thank you for subscribing! You will receive our travel deals soon.');
+                input.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Category card click
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const category = this.querySelector('h3').textContent;
+                alert(`Showing all ${category} destinations!`);
+            });
+        });
+
+        // Initialize
+        createParticles();
+        createFooterParticles();
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
